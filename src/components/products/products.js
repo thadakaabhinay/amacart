@@ -4,6 +4,7 @@ import axios from "axios"
 import Loader from "../UI/Loader"
 import { useHistory, useLocation, useParams } from "react-router-dom"
 
+
 const Products = () => {
     const [items, setItems] = useState([])
     const [loader, setLoader] = useState(true)
@@ -61,15 +62,19 @@ const Products = () => {
     const handleNotFound = () => {
         history.push("/404")
     }
-
     return (
         <>
         <div className={"product-list"}>
             <div className={"product-list--wrapper"}>
                 {
+                    queryParams === null ?
+
                     items.map(item => {
                         return (<ListItem key={item.id} data={item}/>)
                     })
+                    :
+                    items.filter(item => item?.title?.toLowerCase().includes(queryParams?.toLowerCase())).map(item => {
+                        return (<ListItem key={item.id} data={item}/>)})
                 }
             </div>
         </div>

@@ -20,6 +20,7 @@ const SearchBox = () => {
         history.push({
             search: `search=${search}`
         })
+        
     }
 
     return (
